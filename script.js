@@ -29,6 +29,7 @@ async function connect() {
       connectbtn.innerHTML = "Conected";
 
       document.getElementById("adress").innerHTML = account;
+      document.getElementById("bal").innerHTML=ethBalance;
       console.log(ethers);
     }
   } else {
