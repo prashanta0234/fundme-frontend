@@ -2,11 +2,19 @@
 <html>
      <head>
           <title>Fundme</title>
-          <script src="./script.js"></script>
+          <script  type="module" src="./script.js"></script>
+          
           
      </head>
      <body>
-<button onclick="connect()">Connect to metamask</button>
+          <div>
+               <h3 >Status: <span  id="showStatus"></span></h3>
+               <h4 > Your account adress: <span id="adress"></span></h4>
+
+               <button  id="btn">Connect to metamask</button>
+               
+          </div>
+         
 
      </body>
 </html>
