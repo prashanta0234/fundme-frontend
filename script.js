@@ -55,7 +55,7 @@ async function connect() {
   }
 }
 async function fund(){
-  const ethAmount="1";
+  const ethAmount=document.getElementById("fundAmount").value ;
   if (isConnect) {
     console.log("hi")
     const provider=new ethers.providers.Web3Provider(window.ethereum)
@@ -65,6 +65,7 @@ async function fund(){
       const trnsactionResponse= await contract.fund({
         value: ethers.utils.parseEther(ethAmount)
       })
+      console.log(trnsactionResponse.hash);
     }catch(error){
       console.log(error);
       alert(error.message)
