@@ -4,8 +4,12 @@ import { abi,contactAdress } from "./constans.js";
 
 const connectbtn = document.getElementById("btn");
 const fundbtn=document.getElementById("fund");
+const C_B=document.getElementById("C_B");
 connectbtn.onclick = connect;
 fundbtn.onclick=fund;
+C_B.onclick=getContactBalance;
+
+
 let isConnect=false;
 async function connect() {
   console.log("i am clicked");
@@ -28,6 +32,8 @@ async function connect() {
         method: "eth_getBalance",
         params: [`${account}`, "latest"],
       });
+     
+
 
       // conversion from hex string to decimal
       let dec = parseInt(balance, 16);
@@ -76,3 +82,14 @@ async function fund(){
     alert("connect your metamask first")
   }
 }
+
+
+
+
+async function getContactBalance(){
+  const provider=new ethers.providers.Web3Provider(window.ethereum);
+  const getBalance=await provider.getBalance(contactAdress);
+  const balance=ethers.utils.formatEther(getBalance)
+  console.log(balance)
+}
+
