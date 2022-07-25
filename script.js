@@ -5,9 +5,13 @@ import { abi,contactAdress } from "./constans.js";
 const connectbtn = document.getElementById("btn");
 const fundbtn=document.getElementById("fund");
 const C_B=document.getElementById("C_B");
+const C_b=document.getElementById("C_b");
+const With=document.getElementById("With");
+
 connectbtn.onclick = connect;
 fundbtn.onclick=fund;
 C_B.onclick=getContactBalance;
+With.onclick=withdraw;
 
 
 let isConnect=false;
@@ -91,5 +95,22 @@ async function getContactBalance(){
   const getBalance=await provider.getBalance(contactAdress);
   const balance=ethers.utils.formatEther(getBalance)
   console.log(balance)
+  C_b.innerHTML=balance;
 }
 
+async function withdraw(){
+  if (window.ethereum !== undefined) {
+    const provider=new ethers.providers.Web3Provider(window.ethereum)
+    const signer = provider.getSigner()
+    const contract=new ethers.Contract(contactAdress,abi,signer);
+    // console.log(await contract.getOwner());
+  
+  
+    try{
+      await contract.withdraw();
+    }catch(error){
+      console.log(error)
+    }
+  }
+ 
+}
